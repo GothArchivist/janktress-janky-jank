@@ -1,26 +1,19 @@
+# created for reordering columns in .tsv files. This is part of a workflow to fix transcriptth formatting in .docx documents. If you're wondering where .tsv files come into this...it's a long story.
+
 import os
 import pandas as pd
 
-
-#with os.scandir('C:\Users\ct524\Documents\Transcripts\NewUpload_2023-05-02\Transcripts\converted') as directory:
-#    for item in directory:
-#        df2 = df.iloc[:, [1,0,2]]
-#        print(df2)
-
-directory = 'C:/Users/ct524/Documents/Transcripts/NewUpload_2023-05-02/Transcripts/converted'
+directory = '' #insert filepath
 for filename in os.listdir(directory):
     f = os.path.join(directory, filename)
-    # checking if it is a file
-    if os.path.isfile(f):
-        if f.endswith('.txt'):
-#            print(f)
-#            col_names = ['speaker', 'timestamp', 'text']
-            df = pd.read_table(f, sep='\t', skiprows=[0,1])
-#            df = pd.read_table(f)
-            print(df)
-            columnsTitles = ['timestamp', 'speaker', 'text']
-            df2 = df.reindex(columns=columnsTitles)
-            print(df2)
-            nd = 'C:/Users/ct524/Documents/Transcripts/NewUpload_2023-05-02/Transcripts/reformatted'
+    if os.path.isfile(f):  # checking if it is a file
+        if f.endswith('.txt'): #I left the extension on these as .txt, but you could do .tsv as well. Or even make this work for .csv!
+            print(f) #Only have this here in case you want to check things.
+            df = pd.read_table(f, sep='\t') #if you want to use a csv, leave off the sep='\t'. 
+            print(df) #Same deal with checking things
+            columnsTitles = ['timestamp', 'speaker', 'text'] #I'm using the names of the columns in the original document but in the order I want them to be in here. 
+            df2 = df.reindex(columns=columnsTitles) #does the reorder
+            print(df2) #same deal with checking things
+            nd = '' #filepath of wherever the new documents should live
             nf = os.path.join(nd, filename)
             df2.to_csv(nf, sep='\t', index=False)
