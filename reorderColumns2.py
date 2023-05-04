@@ -1,4 +1,4 @@
-# created for reordering columns in .tsv files. This is part of a workflow to fix transcriptth formatting in .docx documents. If you're wondering where .tsv files come into this...it's a long story.
+# created for reordering columns in .tsv files. This is part of a workflow to fix transcript formatting in .docx documents. If you're wondering where .tsv files come into this...it's a long story.
 
 import os
 import pandas as pd
@@ -16,4 +16,4 @@ for filename in os.listdir(directory):
             print(df2) #same deal with checking things
             nd = '' #filepath of wherever the new documents should live
             nf = os.path.join(nd, filename)
-            df2.to_csv(nf, sep='\t', index=False)
+            df2.to_csv(nf, sep='\t', index=False) #Despite the to_csv, you are still saving this as a text file/.tsv the way this script is written. If you actually want to save this as a .csv, remove the sep='\t' part
