@@ -58,9 +58,10 @@ def compareTranscripts():
                 'word information loss': [wil],
                 'word information preserved': [wip]}
     df = pd.DataFrame(analysis)
-    df.to_csv('C:/Users/ct524/Documents/Transcripts/ComparisonTesting/analysis_single_Hebrew_aTrain_2025-10-21_7.csv')
+    df.to_csv('/path/to/file') #input the file path for the CSV you're creating with the output.
     print('Done')
 
 compareTranscripts()
     
 #Congrats, it did a thing!
+
